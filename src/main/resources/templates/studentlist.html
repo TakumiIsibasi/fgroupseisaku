@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>学生一覧</title>
+</head>
+<body>
+    <h1>学生一覧</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>学籍番号</th>
+                <th>名前</th>
+                <th>入学年度</th>
+                <th>クラス番号</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="student : ${studentList}">
+                <td th:text="${student.no}"></td>
+                <td th:text="${student.name}"></td>
+                <td th:text="${student.ent_year}"></td>
+                <td th:text="${student.class_num}"></td>
+                <!-- 変更ボタンを追加 -->
+                <td><a th:href="@{/studentupdate/{id}(id=${student.id})}">変更</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

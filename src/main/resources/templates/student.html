@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>学生登録</title>
+</head>
+<body>
+<form class="form py-4 needs-validation h-adr" method="post" th:action="@{/student}" th:object="${student}">
+    <div class="row mt-3">
+        <label for="ent_year" class="col-4 col-form-label text-end">入学年度</label>
+        <div class="col-4">
+            <select class="form-control" id="ent_year" name="ent_year" th:field="*{ent_year}">
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <label for="no" class="col-4 col-form-label text-end">学生番号</label>
+        <div class="col-4">
+            <input type="text" class="form-control" id="no" name="no"
+                   th:classappend="${#fields.hasErrors('no')} ? 'is-invalid' : 'is-valid'" th:field="*{no}" required/>
+            <div th:if="${#fields.hasErrors('no')}" th:errors="*{no}" class="invalid-feedback">
+                入力値が無効です。</div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <label for="name" class="col-4 col-form-label text-end">氏名</label>
+        <div class="col-4">
+            <input type="text" class="form-control" id="name" name="name"
+                   th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : 'is-valid'" th:field="*{name}" required/>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback">
+                入力値が無効です。</div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <label for="class_num" class="col-4 col-form-label text-end">クラス</label>
+        <div class="col-4">
+            <input type="text" class="form-control" id="class_num" name="class_num"
+                   th:classappend="${#fields.hasErrors('class_num')} ? 'is-invalid' : 'is-valid'" th:field="*{class_num}" required/>
+            <div th:if="${#fields.hasErrors('class_num')}" th:errors="*{class_num}" class="invalid-feedback">
+                入力値が無効です。</div>
+        </div>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="登録"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>学生情報変更</title>
+</head>
+<body>
+    <h1>学生情報変更</h1>
+    <form action="/studentupdate" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label for="no">学籍番号：</label>
+            <input type="text" th:field="*{no}" id="no"/>
+        </div>
+        <div>
+            <label for="name">名前：</label>
+            <input type="text" th:field="*{name}" id="name"/>
+        </div>
+        <div>
+            <label for="ent_year">入学年度：</label>
+            <input type="text" th:field="*{ent_year}" id="ent_year"/>
+        </div>
+        <div>
+            <label for="class_num">クラス番号：</label>
+            <input type="text" th:field="*{class_num}" id="class_num"/>
+        </div>
+        <button type="submit">変更</button>
+    </form>
+</body>
+</html>
