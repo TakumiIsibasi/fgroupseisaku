@@ -9,11 +9,10 @@
     <table>
         <thead>
             <tr>
-                <th>学籍番号</th>
+                <th>学生番号</th>
                 <th>名前</th>
                 <th>入学年度</th>
                 <th>クラス番号</th>
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -22,8 +21,8 @@
                 <td th:text="${student.name}"></td>
                 <td th:text="${student.ent_year}"></td>
                 <td th:text="${student.class_num}"></td>
-                <!-- 変更ボタンを追加 -->
-                <td><a th:href="@{/studentupdate/{id}(id=${student.id})}">変更</a></td>
+                <!-- 変更ボタン -->
+                <td><a th:href="@{/studentupdate(id=${student.id})}">変更</a></td>
             </tr>
         </tbody>
     </table>

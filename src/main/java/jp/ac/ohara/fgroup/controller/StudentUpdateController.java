@@ -16,7 +16,7 @@ public class StudentUpdateController {
     @Autowired
     private StudentService studentService;
 
-    @PostMapping("/studentupdate/{id}")
+    @GetMapping("/studentupdate")
     public String getUpdatePage(@RequestParam("id") Long id, Model model) {
         StudentModel student = studentService.get(id);
         model.addAttribute("student", student);
@@ -26,9 +26,10 @@ public class StudentUpdateController {
     @PostMapping("/studentupdate")
     public String updateStudent(StudentModel student) {
         studentService.save(student);
-        return "redirect:/studentupdatesuccess"; // Redirect to success page after update
+        return "redirect:/studentupdatesuccess"; // 更新成功後、成功ページにリダイレクト
     }
-    
+
+
     @GetMapping("/studentupdatesuccess")
     public String index() {
         return "studentupdatesuccess";
