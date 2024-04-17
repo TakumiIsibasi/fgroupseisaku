@@ -28,7 +28,7 @@ public class StudentModel {
     @Column(name = "class_num", length = 3)
     private String class_num;
     
-    @Column(name = "is_attend")
+    @Column(name = "is_attend" , nullable = true)
     private Boolean is_attend;
     
     @Column(name = "school_cd", length = 3)
