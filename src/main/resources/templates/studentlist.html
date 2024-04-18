@@ -13,6 +13,8 @@
                 <th>名前</th>
                 <th>入学年度</th>
                 <th>クラス番号</th>
+                <th>在学中</th> <!-- 追加 -->
+                <th>変更</th> <!-- 変更 -->
             </tr>
         </thead>
         <tbody>
@@ -21,8 +23,8 @@
                 <td th:text="${student.name}"></td>
                 <td th:text="${student.ent_year}"></td>
                 <td th:text="${student.class_num}"></td>
-                <!-- 変更ボタン -->
-                <td><a th:href="@{/studentupdate(id=${student.id})}">変更</a></td>
+               	<td th:text="${student.is_attend != null && student.is_attend ? '〇' : (student.is_attend != null && !student.is_attend ? '×' : '×')}"></td>
+                <td><a th:href="@{/studentupdate(id=${student.id})}">変更</a></td> <!-- 変更 -->
             </tr>
         </tbody>
     </table>

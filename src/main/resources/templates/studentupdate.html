@@ -30,6 +30,14 @@
                 <option value="102">102</option>
             </select>
         </div>
+        <!-- 在学中のチェックボックス -->
+        <div>
+            <label>
+                在学中：
+                <!-- チェックボックスの状態をis_attendの値によって設定 -->
+                <input type="checkbox" th:checked="${student.is_attend}" th:field="*{is_attend}"/>
+            </label>
+        </div>
         <button type="submit">変更</button>
     </form>
 

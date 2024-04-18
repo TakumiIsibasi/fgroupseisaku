@@ -19,26 +19,25 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping("/student")
-    public ModelAndView add(StudentModel studentmodel, ModelAndView model) {
-        model.addObject("student", studentmodel);
+    public ModelAndView showAddForm(ModelAndView model) {
+        model.addObject("student", new StudentModel());
         model.setViewName("student");
         return model;
     }
 
     @PostMapping("/student")
-    public String student(@Validated @ModelAttribute("student") StudentModel studentmodel, RedirectAttributes redirectAttributes) {
+    public String addStudent(@Validated @ModelAttribute("student") StudentModel student, RedirectAttributes redirectAttributes) {
         try {
-            studentService.save(studentmodel);
+            studentService.save(student);
             redirectAttributes.addFlashAttribute("exception", "");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("exception", e.getMessage());
         }
         return "redirect:/studentsuccess";
     }
-    
 
     @GetMapping("/studentsuccess")
-    public String index() {
+    public String showSuccessPage() {
         return "studentsuccess";
     }
 }

@@ -26,12 +26,11 @@ public class StudentUpdateController {
     @PostMapping("/studentupdate")
     public String updateStudent(StudentModel student) {
         studentService.save(student);
-        return "redirect:/studentupdatesuccess"; // 更新成功後、成功ページにリダイレクト
+        return "redirect:/studentupdatesuccess";
     }
 
-
     @GetMapping("/studentupdatesuccess")
-    public String index() {
+    public String showSuccessPage() {
         return "studentupdatesuccess";
     }
 }
