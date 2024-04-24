@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>科目情報変更</title>
+</head>
+<body>
+    <h1>科目情報変更</h1>
+
+    <form action="/subjectupdate" method="post" th:action="@{/subjectupdate}" th:object="${subject}">
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label>科目コード：</label>
+            <span th:text="${subject.cd}"></span>
+            <input type="hidden" th:field="*{cd}"/> <!-- 入学年度フィールドのための非表示フィールド -->
+        </div>
+
+        <div>
+            <label for="subject_name">科目名：</label>
+            <input type="text" th:field="*{subject_name}" id="subject_name"/>
+        </div>
+            
+        <button type="submit">変更</button>
+    </form>
+
+    <a href="/subjectlist">戻る</a> <!-- 学生一覧に戻るリンク -->
+</body>
+</html>

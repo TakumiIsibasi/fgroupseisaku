@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>科目管理</title>
+</head>
+<body>
+    <h1>科目管理</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>科目コード</th>
+                <th>科目名</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="subject : ${subjectList}">
+                <td th:text="${subject.cd}"></td>
+                <td th:text="${subject.subject_name}"></td>
+                <td><a th:href="@{/subjectupdate(id=${subject.id})}">変更</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
