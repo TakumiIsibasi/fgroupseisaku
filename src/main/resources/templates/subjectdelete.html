@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>得点管理システム</title>
+    <meta charset="UTF-8">
+    <title>科目情報削除</title>
 </head>
 <body>
-<h1>科目情報削除</h1>
-
-<a href="/studentlist/">学生一覧</a>
+    <h1>科目情報削除</h1>
+    <p th:text="'「' + ${subject.subject_name} + '(' + ${subject.cd} + ')」を削除してもよろしいですか？'"></p>
+    <form th:action="@{/subjectdelete}" method="post">
+        <input type="hidden" name="id" th:value="${subject.id}" />
+        <input type="submit" value="削除" />
+    </form>
+    <a href="/subjectlist">戻る</a>
 </body>
 </html>

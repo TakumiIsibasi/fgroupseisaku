@@ -6,51 +6,52 @@
 </head>
 <body>
     <h1>学生一覧</h1>
- 
-    <!-- 絞り込みフォーム -->
-    <form action="/studentlist/" method="get">
-        <!-- 入学年度の絞り込み -->
-        <div class="row mt-3">
-            <label for="ent_year" class="col-4 col-form-label text-end">入学年度</label>
-            <div class="col-4">
-                <select class="form-control" id="ent_year" name="entYear">
-                    <option value="" th:selected="${entYear == null}">すべて</option>
-                    <option value="2020" th:selected="${entYear != null && entYear == 2020}">2020</option>
-                    <option value="2021" th:selected="${entYear != null && entYear == 2021}">2021</option>
-                    <option value="2022" th:selected="${entYear != null && entYear == 2022}">2022</option>
-                    <option value="2023" th:selected="${entYear != null && entYear == 2023}">2023</option>
-                    <option value="2024" th:selected="${entYear != null && entYear == 2024}">2024</option>
-                </select>
-            </div>
+    <a href="/student">新規登録</a>
+   <!-- 絞り込みフォーム -->
+<form action="/studentlist/" method="get">
+    <!-- 入学年度の絞り込み -->
+    <div class="row mt-3">
+        <label for="ent_year" class="col-3 col-form-label text-end">入学年度</label>
+        <div class="col-3">
+            <select class="form-control" id="ent_year" name="entYear">
+                <option value="" th:selected="${entYear == null}">すべて</option>
+                <option value="2020" th:selected="${entYear != null && entYear == 2020}">2020</option>
+                <option value="2021" th:selected="${entYear != null && entYear == 2021}">2021</option>
+                <option value="2022" th:selected="${entYear != null && entYear == 2022}">2022</option>
+                <option value="2023" th:selected="${entYear != null && entYear == 2023}">2023</option>
+                <option value="2024" th:selected="${entYear != null && entYear == 2024}">2024</option>
+            </select>
         </div>
         
         <!-- クラス番号の絞り込み -->
-        <div class="row mt-3">
-            <label for="class_num" class="col-4 col-form-label text-end">クラス番号</label>
-            <div class="col-4">
-                <select class="form-control" id="class_num" name="classNum">
-                    <option value="" th:selected="${classNum == null}">すべて</option>
-                    <option value="101" th:selected="${classNum != null && classNum.equals('101')}">101</option>
-                    <option value="102" th:selected="${classNum != null && classNum.equals('102')}">102</option>
-                    <option value="201" th:selected="${classNum != null && classNum.equals('201')}">201</option>
-                    <option value="202" th:selected="${classNum != null && classNum.equals('202')}">202</option>
-                    <option value="301" th:selected="${classNum != null && classNum.equals('301')}">301</option>
-                    <option value="302" th:selected="${classNum != null && classNum.equals('302')}">302</option>
-                </select>
-            </div>
+        <label for="class_num" class="col-3 col-form-label text-end">クラス番号</label>
+        <div class="col-3">
+            <select class="form-control" id="class_num" name="classNum">
+                <option value="" th:selected="${classNum == null}">すべて</option>
+                <option value="101" th:selected="${classNum != null && classNum.equals('101')}">101</option>
+                <option value="102" th:selected="${classNum != null && classNum.equals('102')}">102</option>
+                <option value="201" th:selected="${classNum != null && classNum.equals('201')}">201</option>
+                <option value="202" th:selected="${classNum != null && classNum.equals('202')}">202</option>
+                <option value="301" th:selected="${classNum != null && classNum.equals('301')}">301</option>
+                <option value="302" th:selected="${classNum != null && classNum.equals('302')}">302</option>
+            </select>
+        </div>
+    </div>
+    
+    <!-- 在学中の絞り込み -->
+    <div class="row mt-3">
+        <label class="col-3 col-form-label text-end"></label>
+        <div class="col-3 form-check">
+            <input type="checkbox" class="form-check-input" id="is_attend" name="isAttend" th:checked="${isAttend != null && isAttend}">
+            <label class="form-check-label" for="is_attend">在学中</label>
         </div>
         
-        <!-- 在学中の絞り込み -->
-        <div class="row mt-3">
-            <label class="col-4 col-form-label text-end">在学中</label>
-            <div class="col-4 form-check">
-                <input type="checkbox" class="form-check-input" id="is_attend" name="isAttend" th:checked="${isAttend != null && isAttend}">
-                <label class="form-check-label" for="is_attend">在学中のみ表示</label>
-            </div>
+        <div class="col-3 offset-3">
+            <button type="submit" class="btn btn-primary">絞り込む</button>
         </div>
-        
-        <button type="submit">絞り込む</button>
-    </form>
+    </div>
+</form>
+
  
     <!-- 絞り込み結果の件数 -->
     <p th:if="${filteredStudentList != null and filteredStudentList.size() > 0}">

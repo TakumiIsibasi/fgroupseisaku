@@ -6,7 +6,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -40,9 +39,9 @@ public class SubjectController {
 	        }
 	        return "redirect:/subjectsuccess";
 	    }
-	 @PostMapping("/subject/delete/{id}")
-	    public String deleteSubject(@PathVariable Long id) {
-	        subjectService.delete(id);
-	        return "redirect:/subjectlist";
-	    }
+	 
+	 @GetMapping("/subjectsuccess")
+	    public String showSuccessPage() {
+	        return "subjectsuccess";
+	    }	 
 }
