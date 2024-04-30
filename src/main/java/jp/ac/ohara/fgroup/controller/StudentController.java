@@ -2,6 +2,7 @@ package jp.ac.ohara.fgroup.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,10 +27,17 @@ public class StudentController {
     }
 
     @PostMapping("/student")
-    public String addStudent(@Validated @ModelAttribute("student") StudentModel student, RedirectAttributes redirectAttributes) {
+    public String addStudent(@Validated @ModelAttribute("student") StudentModel student, BindingResult bindingResult, 
+    		RedirectAttributes redirectAttributes) {
         try {
-            studentService.save(student);
-            redirectAttributes.addFlashAttribute("exception", "");
+            if (studentService.isStudentNumberUnique(student.getNo())) {
+                studentService.save(student);
+                redirectAttributes.addFlashAttribute("exception", "");
+            } else {
+                // 学生番号が重複している場合、フォームを再表示する
+                bindingResult.rejectValue("no", "duplicate.student.number", "学生番号が重複しています");
+                return "student";
+            }
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("exception", e.getMessage());
         }

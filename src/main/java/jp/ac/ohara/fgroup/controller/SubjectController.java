@@ -15,33 +15,36 @@ import jp.ac.ohara.fgroup.service.SubjectService;
 
 @Controller
 public class SubjectController {
+
     @Autowired
     private SubjectService subjectService;
-	 @GetMapping("/subject")
-	    public ModelAndView showAddForm(ModelAndView model) {
-	        model.addObject("subject", new SubjectModel());
-	        model.setViewName("subject");
-	        return model;
-	    }
-	 @PostMapping("/subject")
-	    public String addSubject(@Validated @ModelAttribute SubjectModel subject, BindingResult result,
-	                           RedirectAttributes redirectAttributes) {
-	        if (result.hasErrors()) {
-	            // バリデーションエラーがある場合の処理
-	            return "subject"; // エラーがある場合は元のフォームに戻る
-	        }
 
-	        try {
-	            this.subjectService.save(subject);
-	            redirectAttributes.addFlashAttribute("exception", "");
-	        } catch (Exception e) {
-	            redirectAttributes.addFlashAttribute("exception", e.getMessage());
-	        }
-	        return "redirect:/subjectsuccess";
-	    }
-	 
-	 @GetMapping("/subjectsuccess")
-	    public String showSuccessPage() {
-	        return "subjectsuccess";
-	    }	 
+    @GetMapping("/subject")
+    public ModelAndView showAddForm(ModelAndView model) {
+        model.addObject("subject", new SubjectModel());
+        model.setViewName("subject");
+        return model;
+    }
+
+    @PostMapping("/subject")
+    public String addSubject(@Validated @ModelAttribute("subject") SubjectModel subject, BindingResult bindingResult, 
+    		RedirectAttributes redirectAttributes) {
+       try {
+           if (subjectService.isSubjectCodeUnique(subject.getCd())) {
+        	   subjectService.save(subject);
+        	   redirectAttributes.addFlashAttribute("exception", "");
+           } else {
+               bindingResult.rejectValue("cd", "duplicate.student.code", "科目コードが重複しています");
+               return "subject";
+           }
+       } catch (Exception e) {
+           redirectAttributes.addFlashAttribute("exception", e.getMessage()); // Add error message
+       }
+       return "redirect:/subjectsuccess";
+    }
+
+    @GetMapping("/subjectsuccess")
+    public String showSuccessPage() {
+        return "subjectsuccess";
+    }
 }

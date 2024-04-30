@@ -7,5 +7,5 @@ import jp.ac.ohara.fgroup.model.SubjectModel;
 
 @Repository
 public interface SubjectRepository extends JpaRepository<SubjectModel, Long> {
-    
+    SubjectModel findByCd(String subjectCd);
 }

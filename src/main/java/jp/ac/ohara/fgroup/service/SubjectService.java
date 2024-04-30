@@ -1,4 +1,3 @@
-// SubjectService.java
 package jp.ac.ohara.fgroup.service;
 
 import java.util.List;
@@ -31,5 +30,10 @@ public class SubjectService {
 
     public void delete(SubjectModel subject) {
         repository.delete(subject);
+    }
+    
+    public boolean isSubjectCodeUnique(String subjectCd) {
+        SubjectModel existingSubject = repository.findByCd(subjectCd);
+        return existingSubject == null;
     }
 }

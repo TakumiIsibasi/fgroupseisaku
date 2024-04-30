@@ -13,7 +13,9 @@
         <div class="col-4">
             <input type="text" class="form-control" id="cd" name="cd" th:classappend="${#fields.hasErrors('cd')} ? 'is-invalid' : 'is-valid'" th:field="*{cd}" required/>
             <div th:if="${#fields.hasErrors('cd')}" th:errors="*{cd}" class="invalid-feedback">
-                入力値が無効です。</div>
+                <span th:unless="${#fields.errors('cd').contains('duplicate.subject.code')}">
+					入力値が無効です。</span>
+            </div>
         </div>
     </div>
     

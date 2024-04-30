@@ -7,5 +7,5 @@ import jp.ac.ohara.fgroup.model.StudentModel;
 
 @Repository
 public interface StudentRepository extends JpaRepository<StudentModel, Long> {
-    
+    StudentModel findByNo(String studentNumber);
 }

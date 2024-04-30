@@ -59,12 +59,8 @@
                 入力値が無効です。</div>
         </div>
     </div>
-    <div class="row mt-3" th:if="${#fields.hasErrors('ent_year')}">
-        <p class="error-text">入学年度を選択してください。</p>
-    </div>
-    <div class="row mt-3" th:if="${#fields.hasErrors('class_num')}">
-        <p class="error-text">クラスを選択してください。</p>
-    </div>
+    
+    
     <div class="row mt-3">
         <input type="hidden" id="is_attend" name="is_attend" value="true">
     </div>

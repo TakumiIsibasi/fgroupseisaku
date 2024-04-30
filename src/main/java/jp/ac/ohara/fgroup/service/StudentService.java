@@ -31,4 +31,9 @@ public class StudentService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    public boolean isStudentNumberUnique(String studentNumber) {
+        StudentModel existingStudent = repository.findByNo(studentNumber);
+        return existingStudent == null;
+    }
 }
