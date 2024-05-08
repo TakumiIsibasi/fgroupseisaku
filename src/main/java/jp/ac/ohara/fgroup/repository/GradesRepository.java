@@ -8,5 +8,4 @@ import jp.ac.ohara.fgroup.model.GradesModel;
 @Repository
 public interface GradesRepository extends JpaRepository<GradesModel, Long> {
    
-  
 }
