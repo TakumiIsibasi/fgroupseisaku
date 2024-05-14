@@ -28,11 +28,12 @@ public class StudentController {
 
     @PostMapping("/student")
     public String addStudent(@Validated @ModelAttribute("student") StudentModel student, BindingResult bindingResult, 
-    		RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes) {
         try {
             if (studentService.isStudentNumberUnique(student.getNo())) {
                 studentService.save(student);
                 redirectAttributes.addFlashAttribute("exception", "");
+                return "redirect:/studentsuccess";
             } else {
                 // 学生番号が重複している場合、フォームを再表示する
                 bindingResult.rejectValue("no", "duplicate.student.number", "学生番号が重複しています");
@@ -40,8 +41,8 @@ public class StudentController {
             }
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("exception", e.getMessage());
+            return "redirect:/studentsuccess";
         }
-        return "redirect:/studentsuccess";
     }
 
     @GetMapping("/studentsuccess")
