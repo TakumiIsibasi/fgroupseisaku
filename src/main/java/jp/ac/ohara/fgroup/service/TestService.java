@@ -6,25 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-import jp.ac.ohara.fgroup.model.GradesModel;
-import jp.ac.ohara.fgroup.repository.GradesRepository;
+import jp.ac.ohara.fgroup.model.TestModel;
+import jp.ac.ohara.fgroup.repository.TestRepository;
 
 @Service
 @Transactional
-public class GradesService {
+public class TestService {
 
     @Autowired
-    private GradesRepository repository;
+    private TestRepository repository;
 
-    public List<GradesModel> getGradesList() {
+    public List<TestModel> getGradesList() {
         return repository.findAll();
     }
 
-    public GradesModel get(Long id) {
+    public TestModel get(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public void save(GradesModel grades) {
+    public void save(TestModel grades) {
         repository.save(grades);
     }
 
