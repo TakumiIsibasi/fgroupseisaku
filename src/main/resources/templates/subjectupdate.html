@@ -12,17 +12,17 @@
         <div>
             <label>科目コード：</label>
             <span th:text="${subject.cd}"></span>
-            <input type="hidden" th:field="*{cd}"/> <!-- 入学年度フィールドのための非表示フィールド -->
+            <input type="hidden" th:field="*{cd}"/> <!-- 科目コードフィールドのための非表示フィールド -->
         </div>
 
         <div>
             <label for="subject_name">科目名：</label>
-            <input type="text" th:field="*{subject_name}" id="subject_name"/>
+            <input type="text" th:field="*{subject_name}" id="subject_name" title="科目名のフィールドに入力してください。" required>
         </div>
             
         <button type="submit">変更</button>
     </form>
 
-    <a href="/subjectlist">戻る</a> <!-- 学生一覧に戻るリンク -->
+    <a href="/subjectlist">戻る</a> <!-- 科目一覧に戻るリンク -->
 </body>
 </html>

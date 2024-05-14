@@ -7,7 +7,7 @@
 <body>
     <h1>学生情報変更</h1>
 
-    <form action="/studentupdate" method="post" th:action="@{/studentupdate}" th:object="${student}">
+    <form id="studentForm" action="/studentupdate" method="post" th:action="@{/studentupdate}" th:object="${student}">
         <input type="hidden" th:field="*{id}"/>
         <div>
             <label>入学年度：</label>
@@ -21,7 +21,7 @@
         </div>
         <div>
             <label for="name">名前：</label>
-            <input type="text" th:field="*{name}" id="name"/>
+            <input type="text" th:field="*{name}" id="name" title="名前のフィールドに入力してください。" required>
         </div>
         <div>
             <label for="class_num">クラス番号：</label>
