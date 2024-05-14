@@ -9,22 +9,20 @@ import org.springframework.stereotype.Service;
 import jp.ac.ohara.fgroup.model.TeacherModel;
 import jp.ac.ohara.fgroup.repository.LoginRepository;
 
-
 @Service
 public class LoginService implements UserDetailsService {
 
     @Autowired
-    private LoginRepository LoginRepository; // ユーザモデルのRepository
+    private LoginRepository loginRepository; // 修正: フィールド名を小文字で開始
 
-    /**
-     * ユーザの検索を行う
-     */
     @Override
-    public UserDetails loadUserByUsername(String ID) throws UsernameNotFoundException {
-        System.out.println("serach name : " + ID);
-        TeacherModel user = this.LoginRepository.findByIDEquals(ID); // emailで検索するので「EmailEquals」としている
+    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+        System.out.println("serach name : " + id);
+        TeacherModel user = loginRepository.findByIDEquals(id); // IDで検索
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with id: " + id);
+        }
         System.out.println(user.toString());
         return user;
     }
-
 }
