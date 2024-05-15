@@ -1,13 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>科目情報登録完了</title>
+<title>登録完了</title>
+<style>
+    /* 全体のスタイル */
+    body {
+        background-color: white;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* サイドバーのスタイル */
+    .sidebar {
+        float: left;
+        width: 200px;
+        padding: 20px;
+    }
+    
+    /* コンテンツのスタイル */
+    .content {
+        margin-left: 220px; /* サイドバーの幅 + マージン */
+        padding: 20px;
+        margin-bottom: 250px;
+        border-left: 2px solid #ddd; /* コンテンツの左側に縦線を引く */
+    }
+    
+    /* タイトルの裏のスタイル */
+    h1 {
+        background-color: lightblue;
+        padding: 10px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-align: left; /* タイトルを左寄せにする */
+    }
+    
+    h3 {
+        background-color: lightgray;
+        padding: 10px;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+    
+    h2 {
+        background-color: lightgreen; /* 背景色を薄緑に設定 */
+        padding: 10px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-size: 75%; /* テキストサイズを四分の三に設定 */
+        text-align: center;
+    }
+    
+    h4 {
+        background-color: lightgray;
+        padding: 7px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    /* メニュー項目のスタイル */
+    .menu-item {
+        margin-bottom: 10px;
+    }
+</style>
 </head>
 <body>
-	<h1>科目情報登録</h1>
-	<h2>登録が完了しました</h2>
-	<a href="/subject">戻る</a>
-	<a href="/subjectlist">科目一覧</a>
+    <h1>得点管理システム</h1>
+     <div class="sidebar">
+        <!-- サイドバーのコンテンツ -->
+        <div class="menu-item">
+            <a href="/">メニュー</a>
+        </div>
+        <div class="menu-item">
+            <a href="/studentlist/">学生管理</a>
+        </div>
+        <div class="menu-item">
+            <a href="/test">成績登録</a>
+        </div>
+        <div class="menu-item">
+            <a href="/testsearch">成績参照</a>
+        </div>
+        <div class="menu-item">
+            <a href="/subject">科目管理</a>
+        </div>
+    </div>
+    <div class="content">
+        <h3>学生情報登録</h3>
+        <h2>登録が完了しました</h2>
+        <a href="/subject">戻る</a>
+        <a href="/subjectlist">科目一覧</a>
+    </div>
+    <h4>
+        @ 2023 TIC<br>
+        大原学園
+    </h4>
 </body>
 </html>

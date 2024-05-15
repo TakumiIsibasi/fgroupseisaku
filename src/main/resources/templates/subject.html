@@ -1,38 +1,167 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>科目情報登録</title>
+<meta charset="UTF-8">
+<title>得点管理システム</title>
+<style>
+    /* 全体のスタイル */
+    body {
+        background-color: white;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    /* サイドバーのスタイル */
+    .sidebar {
+        float: left;
+        width: 200px;
+        padding: 20px;
+        background-color: #f5f5f5;
+        height: calc(100vh - 60px);
+    }
+    /* コンテンツのスタイル */
+    .content {
+        margin-left: 220px; /* サイドバーの幅 + マージン */
+        padding: 20px;
+    }
+    /* タイトルのスタイル */
+    h1 {
+        background-color: lightblue;
+        padding: 10px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-align: left; /* タイトルを左寄せにする */
+    }
+    h3 {
+        background-color: lightgray;
+        padding: 10px;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+    h4 {
+        background-color: lightgray;
+        padding: 7px;
+        margin-top: 20px;
+        margin-bottom: 0;
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+    }
+    /* メニュー項目のスタイル */
+    .menu-item a {
+        display: block;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #ccc;
+        text-decoration: none;
+        text-align: center;
+        color: black;
+        border-radius: 5px;
+    }
+    .menu-item a:hover {
+        background-color: #aaa;
+    }
+    .menu-button {
+        display: inline-block;
+        width: 200px;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        margin: 10px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: white;
+        font-size: 1.2em;
+    }
+    .student-management { background-color: #f48fb1; }
+    .grades-management { background-color: #81c784; }
+    .subject-management { background-color: #9575cd; }
+
+    /* フォームのスタイル */
+    form {
+        margin-top: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .invalid-feedback {
+        color: #dc3545;
+    }
+</style>
 </head>
 <body>
-<h1>科目情報登録</h1>
-<form class="form py-4 needs-validation h-adr" method="post" th:action="@{/subject}" th:object="${subject}">
+    <h1>得点管理システム</h1>
+    <div class="sidebar">
+        <!-- サイドバーのコンテンツ -->
+        <div class="menu-item">
+            <a href="/">メニュー</a>
+        </div>
+        <div class="menu-item">
+            <a href="/studentlist/">学生管理</a>
+        </div>
+        <div class="menu-item">
+            <a href="/test">成績登録</a>
+        </div>
+        <div class="menu-item">
+            <a href="/testsearch">成績参照</a>
+        </div>
+        <div class="menu-item">
+            <a href="/subject">科目管理</a>
+        </div>
+    </div>
+    <div class="content">
+        <!-- メインコンテンツのメニュー -->
+        <h1>科目情報登録</h1>
+        <form class="form" method="post" th:action="@{/subject}" th:object="${subject}">
 
-    <div class="row mt-3">
-        <label for="cd" class="col-4 col-form-label text-end">科目コード</label>
-        <div class="col-4">
-            <input type="text" class="form-control" id="cd" name="cd" th:classappend="${#fields.hasErrors('cd')} ? 'is-invalid' : 'is-valid'" th:field="*{cd}" required/>
-            <div th:if="${#fields.hasErrors('cd')}" th:errors="*{cd}" class="invalid-feedback">
-                <span th:unless="${#fields.errors('cd').contains('duplicate.subject.code')}">
-					入力値が無効です。</span>
+            <div class="row mt-3">
+                <label for="cd" class="col-4 col-form-label text-end">科目コード</label>
+                <div class="col-4">
+                    <input type="text" class="form-control" id="cd" name="cd" th:classappend="${#fields.hasErrors('cd')} ? 'is-invalid' : 'is-valid'" th:field="*{cd}" required/>
+                    <div th:if="${#fields.hasErrors('cd')}" th:errors="*{cd}" class="invalid-feedback">
+                        <span th:unless="${#fields.errors('cd').contains('duplicate.subject.code')}">
+                            入力値が無効です。</span>
+                    </div>
+                </div>
             </div>
-        </div>
+            
+            <div class="row mt-3">
+                <label for="subject_name" class="col-4 col-form-label text-end">科目名</label>
+                <div class="col-4">
+                    <input type="text" class="form-control" id="subject_name" name="subject_name" th:classappend="${#fields.hasErrors('subject_name')} ? 'is-invalid' : 'is-valid'" th:field="*{subject_name}" required/>
+                    <div th:if="${#fields.hasErrors('subject_name')}" th:errors="*{subject_name}" class="invalid-feedback">
+                        入力値が無効です。</div>
+                </div>
+            </div>
+            
+            <!-- 学校コードを非表示の隠しフィールドで送信 -->
+            <input type="hidden" id="school_cd" name="school_cd" value="fko">
+            
+            <input type="submit" class="btn btn-primary" value="登録"/>
+        </form>
+        <a href="/subjectlist">戻る</a>
     </div>
-    
-    <div class="row mt-3">
-        <label for="subject_name" class="col-4 col-form-label text-end">科目名</label>
-        <div class="col-4">
-            <input type="text" class="form-control" id="subject_name" name="subject_name" th:classappend="${#fields.hasErrors('subject_name')} ? 'is-invalid' : 'is-valid'" th:field="*{subject_name}" required/>
-            <div th:if="${#fields.hasErrors('subject_name')}" th:errors="*{subject_name}" class="invalid-feedback">
-                入力値が無効です。</div>
-        </div>
-    </div>
-    
-    <!-- 学校コードを非表示の隠しフィールドで送信 -->
-    <input type="hidden" id="school_cd" name="school_cd" value="fko">
-    
-    <input type="submit" class="btn btn-primary" value="登録"/>
-</form>
-<a href="/subjectlist">戻る</a>
+    <h4>© 2023 TIC<br>大原学園</h4>
 </body>
 </html>
