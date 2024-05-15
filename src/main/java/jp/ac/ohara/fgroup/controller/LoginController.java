@@ -39,7 +39,7 @@ public class LoginController {
         if (error != null) {
             System.err.println("ログインに失敗しました。");
         }
-        return "/login";
+        return "login/login";
     }
     
     @GetMapping("/login")
