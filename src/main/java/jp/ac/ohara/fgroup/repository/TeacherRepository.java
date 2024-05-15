@@ -7,4 +7,5 @@ import jp.ac.ohara.fgroup.model.TeacherModel;
 
 @Repository
 public interface TeacherRepository extends JpaRepository<TeacherModel, Long> {
+	
 }

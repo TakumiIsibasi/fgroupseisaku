@@ -31,4 +31,9 @@ public class TestService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+    
+//    public List<TestModel> getAllTest(String schoolCd) {
+//		return repository.findBySchoolCd(schoolCd);
+//	}
+
 }

@@ -36,4 +36,8 @@ public class StudentService {
         StudentModel existingStudent = repository.findByNo(studentNumber);
         return existingStudent == null;
     }
+//
+//	public List<StudentModel> getAllStudent(String schoolCd) {
+//		return repository.findBySchoolCd(schoolCd);
+//	}
 }

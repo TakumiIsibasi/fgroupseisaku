@@ -36,4 +36,8 @@ public class SubjectService {
         SubjectModel existingSubject = repository.findByCd(subjectCd);
         return existingSubject == null;
     }
+    
+//    public List<SubjectModel> getAllSubject(String schoolCd) {
+//		return repository.findBySchoolCd(schoolCd);
+//	}
 }

@@ -1,26 +1,4 @@
 package jp.ac.ohara.fgroup.controller;
-//
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.servlet.ModelAndView;
-//
-//import team.D.model.TeacherModel;
-//
-//@Controller
-//public class LoginController{
-//  
-//  @GetMapping("/login/")
-//  public ModelAndView in(TeacherModel user ,ModelAndView model) {
-//      model.addObject("login", user);
-//      model.setViewName("login");
-//      return model;
-//}
-//}
-
-
-
-
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -61,7 +39,7 @@ public class LoginController {
         if (error != null) {
             System.err.println("ログインに失敗しました。");
         }
-        return "login/login";
+        return "/login";
     }
     
     @GetMapping("/login")
@@ -77,9 +55,4 @@ public class LoginController {
         model.setViewName("/logout");
         return model;
     }
-    
-    
-    
-    
-
 }

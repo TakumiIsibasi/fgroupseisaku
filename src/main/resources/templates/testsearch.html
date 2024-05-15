@@ -5,6 +5,24 @@
 <title>成績参照</title>
 </head>
 <body>
-これは成績参照ページ
+    <table>
+        <thead>
+            <tr>
+                <th>入学年度</th>
+                <th>クラス</th>
+                <th>学生番号</th>
+                <th>氏名</th>
+                <th>点数</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="test : ${testList}">
+				<td th:text="${student.ent_year}"></td>
+				<td th:text="${student.class_num}"></td>
+				<td th:text="${student.no}"></td>
+				<td th:text="${teacher.teacherName}"></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
